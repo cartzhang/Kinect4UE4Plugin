@@ -1,0 +1,20 @@
+{
+	"FileVersion" : 3,
+	
+	"FriendlyName" : "Plugin Kinect18Plugin",
+	"Version" : 1,
+	"VersionName" : "1.0",
+	"CreatedBy" : "Zhang Pengju",
+	"CreatedByURL" : "http://blog.csdn.net/cartzhang/",
+	"Description" : "test description",
+	"Category" : "Other",
+	"EnabledByDefault" : true,
+	
+	"Modules" :
+	[
+		{
+			"Name" : "Kinect18Plugin",
+			"Type" : "Developer"
+		}
+	]
+}
