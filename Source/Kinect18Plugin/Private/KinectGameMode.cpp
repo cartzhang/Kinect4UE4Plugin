@@ -5,30 +5,23 @@
 #include "KinectGameMode.h"
 #include "KinectPawn.h"
 #include "KinectPlayerController.h"
-
+#include "KinectPlayerCharacter.h"
 
 AKinectGameMode::AKinectGameMode(const class FPostConstructInitializeProperties& PCIP)
 	: Super(PCIP)
 {
 	static ConstructorHelpers::FClassFinder<APawn> PlayerPawnClassFinder(TEXT("/Game/Blueprints/MyCharacter"));
-	DefaultPawnClass = PlayerPawnClassFinder.Class;
+	//DefaultPawnClass = PlayerPawnClassFinder.Class;
+	DefaultPawnClass = AKinectPlayerCharacter::StaticClass();
 	// set default PlayerController class to our Blueprinted character
 	PlayerControllerClass = AKinectPlayerController::StaticClass();
 	//DefaultPawnClass = AKinectPawn::StaticClass();
+	
 }
 
 void AKinectGameMode::Tick(float DeltaSeconds)
 {
-	FString jsEvent = FString::Printf(TEXT("var event = new CustomEvent(\"game.tick\", {detail: {deltaTime : %0.4f}}); Object.dispatchEvent(event);"), DeltaSeconds);
-	
-	//if (Flathead::IsAvailable())
-	//{
-	//	Flathead::Get().Execute(jsEvent, TEXT("GameMode"));
-	//}
-	if (GEngine)
-	{
-		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, TEXT("Welcom to Kincet  WORLD"));
-	}
+	FString jsEvent = FString::Printf(TEXT("var event = new CustomEvent(\"game.tick\", {detail: {deltaTime : %0.4f}}); Object.dispatchEvent(event);"), DeltaSeconds);	
 }
 
 void AKinectGameMode::StartPlay()

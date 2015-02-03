@@ -2,11 +2,12 @@
 
 #include "Kinect18PrivatePCH.h"
 #include "KinectPlayerController.h"
-#include "AllowWindowsPlatformTypes.h"
-#include "UDKinect.h"
-#include "NuiSensor.h"
-using namespace  UDKinect;
-#include "HideWindowsPlatformTypes.h"
+//#include "Actor.h"
+//#include "AllowWindowsPlatformTypes.h"
+//#include "UDKinect.h"
+//#include "NuiSensor.h"
+//using namespace  UDKinect;
+//#include "HideWindowsPlatformTypes.h"
 
 AKinectPlayerController::AKinectPlayerController(const class FPostConstructInitializeProperties& PCIP) : Super(PCIP)
 {
@@ -27,56 +28,18 @@ void AKinectPlayerController::PostInitializeComponents()
 	Super::PostInitializeComponents();
 }
 
-void AKinectPlayerController::BeginPlay()
-{
-	Super::BeginPlay();
-	UDKinectInitialize(1, 1);
-	InitGesture(0.05, 3, 4);
-}
-
 void AKinectPlayerController::TickActor(float DeltaTime, enum ELevelTick TickType, FActorTickFunction& ThisTickFunction)
 {
 	Super::TickActor(DeltaTime, TickType, ThisTickFunction);
-
-	/*if (1 == UDKinectIsSensorReady())
-	{
-		int UserId = 0;
-		int BoneId = NUI_SKELETON_POSITION_HEAD;
-		UDKinect::UDKVector pBonePosition;
-		pBonePosition.x = 0;
-		UDKinectGetSkeletonPosition(UserId, BoneId, &pBonePosition);
-		int TrakingState = UDKinectGetSkeletonTrackingState(UserId, BoneId);
-
-		if (GEngine)
-		{
-			FString ShowPosition = "Positon is:";
-			ShowPosition += FString::SanitizeFloat(pBonePosition.x);
-			ShowPosition += ":";
-			ShowPosition += FString::SanitizeFloat(pBonePosition.y);
-			ShowPosition += FString::SanitizeFloat(pBonePosition.z);
-			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, *ShowPosition);
-			FString StrState;
-			StrState += "Tracking state is:";
-			StrState += FString::FromInt(TrakingState);
-			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, *StrState);
-		}
-	}*/
-	JudgeGesture();
+	
 	// Is this the first frame after the game has ended
 	if (bGameEndedFrame)
 	{
 		bGameEndedFrame = false;
-
 		// ONLY PUT CODE HERE WHICH YOU DON'T WANT TO BE DONE DUE TO HOST LOSS
-
 		// Do we need to show the end of round scoreboard?
 		if (IsPrimaryPlayer())
 		{
-			//AShooterHUD* ShooterHUD = GetShooterHUD();
-			//if (ShooterHUD)
-			//{
-			//	ShooterHUD->ShowScoreboard(true, true);
-			//}
 			bChangeMapFrame = true;
 		}
 	}
@@ -151,71 +114,4 @@ void AKinectPlayerController::ClientSetSpectatorCamera_Implementation(FVector Ca
 	SetInitialLocationAndRotation(CameraLocation, CameraRotation);
 	SetViewTarget(this);
 }
-
-void AKinectPlayerController::InitGesture(float NeutralThreshold, int Times, double Difftimes)
-{
-	NeutralThreshold = NeutralThreshold;
-	Times = Times;
-	Difftimes = Difftimes;
-	TempTimes = 0;
-	LeftHand = 0;
-	RightHand = 1;
-	for (int i = 0; i < NUI_SKELETON_COUNT; i++)
-	{
-		//WaveDatas[i][LeftHand].Reset();
-		//WaveDatas[i][RightHand].Reset();
-	}
-}
-
-void AKinectPlayerController::JudgeGesture()
-{
-	int UserId = 0;
-	int HeadBoneId = NUI_SKELETON_POSITION_HEAD;
-	if (UDKinectGetSkeletonTrackingState(UserId, HeadBoneId) <= 0)
-	{
-		if (GEngine)
-		{
-			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, TEXT("Could not track the object!"));
-		}
-		return;
-	}
-
-	UDKinect::UDKVector pHeadBonePosition;
-	pHeadBonePosition.x = 0;
-	UDKinectGetSkeletonPosition(UserId, HeadBoneId, &pHeadBonePosition);
-	int RigtHandBoneId = NUI_SKELETON_POSITION_HAND_RIGHT;
-	UDKinect::UDKVector pRHandBonePosition; 
-	pRHandBonePosition.x = pRHandBonePosition.y = pRHandBonePosition.z = 0;
-	UDKinectGetSkeletonPosition(UserId, RigtHandBoneId, &pRHandBonePosition);
-
-	float curpos = pRHandBonePosition.y;
-	float HeadY = pHeadBonePosition.y;
-	this->K4UStartGame();
-
-	if (curpos > HeadY)
-	{
-		/*TempTimes++;
-		if (TempTimes > Times)
-		{
-			this->K4UStartGame();
-			TempTimes = 0;
-		}
-		if (GEngine)
-		{
-			FString TmpString = FString::FromInt(TempTimes);
-			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, TmpString);
-		}*/
-	}
-	if (GEngine)
-	{
-	/*	FString TmpStr = "HeadY:";
-		TmpStr += FString::FromInt(HeadY);
-		TmpStr += "   ---Hand:";
-		TmpStr += FString::FromInt(curpos);
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, TmpStr);*/
-	}
-
-}
-
-//
 
