@@ -8,7 +8,9 @@
 
    U can just visit here:
         http://blog.csdn.net/cartzhang/article/details/43193431
-
+   and how to use this plugin you can visit here:
+         http://blog.csdn.net/cartzhang/article/details/43563959
+ 
    If u download the plugin and just rebuild you unreal engine,and in you new game,u have to choose u game mode as 
 KinectGameMode ,then u can use the kinect plugin.
 
