@@ -11,20 +11,20 @@ AKinectPawn::AKinectPawn(const class FPostConstructInitializeProperties& PCIP)
 	: Super(PCIP)
 {
 	// Structure to hold one-time initialization
-	struct FConstructorStatics
-	{
-		ConstructorHelpers::FObjectFinderOptional<UStaticMesh> PlaneMesh;
-		FConstructorStatics()
-			: PlaneMesh(TEXT("/Game/Meshes/UFO.UFO"))
-		{
-		}
-	};
-	static FConstructorStatics ConstructorStatics;
+	//struct FConstructorStatics
+	//{
+	//	ConstructorHelpers::FObjectFinderOptional<UStaticMesh> PlaneMesh;
+	//	FConstructorStatics()
+	//		: PlaneMesh(TEXT("/Game/Meshes/UFO.UFO"))
+	//	{
+	//	}
+	//};
+	//static FConstructorStatics ConstructorStatics;
 
 	// Create static mesh component
-	PlaneMesh = PCIP.CreateDefaultSubobject<UStaticMeshComponent>(this, TEXT("PlaneMesh0"));
-	PlaneMesh->SetStaticMesh(ConstructorStatics.PlaneMesh.Get());
-	RootComponent = PlaneMesh;
+	//PlaneMesh = PCIP.CreateDefaultSubobject<UStaticMeshComponent>(this, TEXT("PlaneMesh0"));
+	//PlaneMesh->SetStaticMesh(ConstructorStatics.PlaneMesh.Get());
+	//RootComponent = PlaneMesh;
 
 	// Create a spring arm component
 	SpringArm = PCIP.CreateDefaultSubobject<USpringArmComponent>(this, TEXT("SpringArm0"));

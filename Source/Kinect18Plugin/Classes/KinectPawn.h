@@ -2,12 +2,8 @@
 #pragma once
 
 // Disable warning messages 4946 - reinterpret_cast of similar type
-// This is done to allow for v8 Initialization 
 #pragma warning( push )
 #pragma warning( disable : 4946 )
-//
-//#include "v8.h"
-
 // Resume standard warnings
 #pragma warning( pop )
 
@@ -20,8 +16,8 @@ public:
 	GENERATED_UCLASS_BODY()
 
 	/** StaticMesh component that will be the visuals for our flying pawn */
-	UPROPERTY(Category=Mesh, VisibleDefaultsOnly, BlueprintReadOnly)
-	TSubobjectPtr<class UStaticMeshComponent> PlaneMesh;
+	//UPROPERTY(Category=Mesh, VisibleDefaultsOnly, BlueprintReadOnly)
+	//TSubobjectPtr<class UStaticMeshComponent> PlaneMesh;
 
 	/** Spring arm that will offset the camera */
 	UPROPERTY(Category = Camera, VisibleDefaultsOnly, BlueprintReadOnly)
