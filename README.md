@@ -11,5 +11,8 @@ U can just visit here:
 If u download the plugin and just rebuild you unreal engine,and in you new game,u have to choose u game mode as 
 KinectGameMode ,then u can use the kinect plugin.
 
+Remembr: You Need to change the file name as same the plugin name ,so change the file name as "Kinect18Plugin",then
+generate you unreal engine project(just double click the GenerateProjectFiles.bat file,then build the engine with visual studio).So is ok!
+
 Otherwise ,u can also change the code to made the plugin more improve and perfect.
 
