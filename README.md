@@ -1,5 +1,6 @@
 # Kinect4UE4Plugin
-
+   URL：https://github.com/cartzhang/Kinect4UE4Plugin 
+   Author:Cartzhang
    This is a Kinect plugin for UE4.
 
    The version of Kinect is 1.8,and the version of  unreal engine is 4.5.0.
