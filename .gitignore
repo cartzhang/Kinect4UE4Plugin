@@ -75,3 +75,4 @@ $RECYCLE.BIN/
 *.lnk
 *.pdb
 Binaries/Win64/UE4Editor-Kinect18Plugin.pdb
+*.pdb
