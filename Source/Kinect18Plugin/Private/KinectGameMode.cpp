@@ -10,7 +10,7 @@
 AKinectGameMode::AKinectGameMode(const class FPostConstructInitializeProperties& PCIP)
 	: Super(PCIP)
 {
-	static ConstructorHelpers::FClassFinder<APawn> PlayerPawnClassFinder(TEXT("/Game/Blueprints/MyCharacter"));
+	//static ConstructorHelpers::FClassFinder<APawn> PlayerPawnClassFinder(TEXT("/Game/Blueprints/MyCharacter"));
 	//DefaultPawnClass = PlayerPawnClassFinder.Class;
 	DefaultPawnClass = AKinectPlayerCharacter::StaticClass();
 	// set default PlayerController class to our Blueprinted character
